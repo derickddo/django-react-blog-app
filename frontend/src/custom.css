@@ -1,0 +1,23 @@
+.snap-mandatory{
+    border-radius: 0;
+}
+.transform{
+    position: relative;
+}
+.transform::after{
+    background: rgba(0, 0, 0, 0.5);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: 700;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
