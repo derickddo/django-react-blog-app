@@ -1,40 +1,32 @@
-import {
-  Button,
-  Label,
-  Modal,
-  TextInput,
-  Textarea,
-  FileInput,
-} from "flowbite-react";
-import SelectInput from "./SelectInput";
+import { Modal } from "flowbite-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import PostForm from "./forms/PostForm";
+import  PropTypes  from "prop-types";
 
-const ModalComponent = () => {
-  const [openModal, setOpenModal] = useState("");
+const ModalComponent = ({element, name, form_title}) => {
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
-      <Link onClick={() => setOpenModal("form-elements")}>Post</Link>
+      <Link onClick={() => setOpenModal(true)}>{name}</Link>
       <Modal
-        show={openModal === "form-elements"}
+        show={openModal === true}
         size="lg"
-        popup
-        onClose={() => setOpenModal(undefined)}
+        onClose={() => setOpenModal(false)}
       >
-        <Modal.Header />
+        <Modal.Header>
+          {form_title}
+        </Modal.Header>
         <Modal.Body>
-          <div className="space-y-6 mb-2">
-            <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Post Something
-            </h3>
-          </div>
-
-          <PostForm />
+          {element}
         </Modal.Body>
       </Modal>
     </>
   );
 };
+ModalComponent.propTypes = {
+  element: PropTypes.node,
+  name: PropTypes.string.isRequired,
+  form_title: PropTypes.string.isRequired,
+}
 export default ModalComponent;

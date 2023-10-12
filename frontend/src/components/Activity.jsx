@@ -1,6 +1,5 @@
 import { Avatar } from "flowbite-react";
-import React from "react";
-
+import PropTypes from 'prop-types'
 const Activity = ({fixed}) => {
     
   return (
@@ -82,5 +81,9 @@ const Activity = ({fixed}) => {
     </div>
   );
 };
+
+Activity.propTypes = {
+  fixed: PropTypes.bool.isRequired
+}
 
 export default Activity;

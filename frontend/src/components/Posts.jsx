@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import PropTypes from 'prop-types'; 
 import Post from "./Post";
 import Activity from "./Activity";
 import { Link } from "react-router-dom";
 
-const Posts = ({ posts, fixed }) => {
+const Posts = ({ posts, fixed, truncateText }) => {
   return (
     <>
       <div
@@ -24,7 +24,7 @@ const Posts = ({ posts, fixed }) => {
             <div className="grid  mt-2 gap-10">
               {posts.map((post) => 
                 <Link to={`/get-post/${post.id}`} key={post.id}>
-                  <Post post={post} key={post.id}/>
+                  <Post post={post} key={post.id} truncateText={truncateText}/>
                 </Link>
               )}
             </div>
@@ -35,5 +35,11 @@ const Posts = ({ posts, fixed }) => {
     </>
   );
 };
+
+Posts.propTypes = {
+  posts : PropTypes.array.isRequired,
+  fixed : PropTypes.bool.isRequired,
+  truncateText: PropTypes.func.isRequired
+}
 
 export default Posts;

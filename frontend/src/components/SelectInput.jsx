@@ -1,7 +1,8 @@
 
 import { Label, Select } from 'flowbite-react';
+import PropTypes from 'prop-types'; 
 
-const SelectInput = () => {
+const SelectInput = ({category, setCategory}) => {
   return (
     <div
       className="max-w-md"
@@ -16,23 +17,31 @@ const SelectInput = () => {
       <Select
         id="countries"
         required
+        name='category'
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       >
-        <option>
+        <option value={'Sport'}>
           Sport
         </option>
-        <option>
+        <option value={'Science'}>
           Science
         </option>
-        <option>
+        <option value={'Technology'}>
           Technology
         </option>
-        <option>
+        <option value={'Politics'}>
           Politics
         </option>
       </Select>
     </div>
   )
 }
+SelectInput.propTypes = {
+  category: PropTypes.string.isRequired,
+  setCategory: PropTypes.func.isRequired
+}
+
 export default SelectInput
 
 

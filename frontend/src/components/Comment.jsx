@@ -1,4 +1,3 @@
-import React from 'react'
 import { Avatar } from 'flowbite-react'
 import DropdownComponent from './DropdownComponent'
 

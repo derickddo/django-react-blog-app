@@ -19,6 +19,7 @@ CATEGORY = (
     ('Politics', 'Politics'),
     ('Science', 'Science'),
     ('Education', 'Education'),
+    ('Technology', 'Technology'),
 )
 CATEGORY_DEFAULT = ''
 

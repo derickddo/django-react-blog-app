@@ -1,16 +1,18 @@
 import "./App.css";
 import NavbarComponent from "./components/NavbarComponent";
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import HeroSection from "./components/HeroSection";
 import Posts from "./components/Posts";
 import { Route, Routes } from "react-router-dom";
 import FooterComponent from "./components/FooterComponent";
 import GetPost from "./components/pages/GetPost";
+import LoginForm from "./components/forms/LoginForm";
 
 const App = () => {
  
   const [posts, setPosts] = useState([]);
   const [isFixed, setIsFixed] = useState(false);
+  
   
   const API_URL = 'http://127.0.0.1:8000/api/posts'
 
@@ -21,6 +23,15 @@ const App = () => {
     }
     const data = await response.json()
     setPosts(data)
+  }
+
+  function truncateText(text, wordCount) {
+    const words = text.split(' ');
+    if (words.length > wordCount) {
+      return words.slice(0, wordCount).join(' ') + '...';
+    } else {
+      return text;
+    }
   }
  
 
@@ -42,17 +53,16 @@ const App = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isFixed]);
+  }, []);
 
   useEffect(() => {
     getPosts()
-  }, []);
+  }, [posts]);
 
 
   return (
     <>
       <NavbarComponent />
-      
       <Routes>
         <Route
           path="/home"
@@ -63,12 +73,14 @@ const App = () => {
             <Posts
               posts={posts}
               fixed={isFixed}
+              truncateText={truncateText}
               
             />
             </>
           }
         />
-        <Route path="/get-post/:id" element={<GetPost />} />
+        <Route path="/get-post/:id" element={<GetPost truncateText={truncateText} />} />
+        <Route path="/login" element={<LoginForm />} />
       </Routes>
       <FooterComponent />
     </>
